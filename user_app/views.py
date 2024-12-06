@@ -5,8 +5,9 @@ from rest_framework.response import Response
 from book_recommendation_app.serializers import BookSerializer
 from django.db.models import Q
 from book_recommendation_app.models import Book
+from rest_framework.pagination import PageNumberPagination
 
-from .serializers import UserSerializer,UserPreferenceSerializer
+from .serializers import UserSerializer
 from .models import User,UserPreference
 
 
@@ -22,7 +23,7 @@ class RetrieveUserView(generics.RetrieveAPIView):
 
 # User Preferences
 class AddUserPreferenceView(APIView):
-
+    pagination_class = PageNumberPagination
     def post(self, request, *args, **kwargs):
         """
             Handle POST request to create or update a new object.
