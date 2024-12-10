@@ -68,7 +68,7 @@ class BookRecommendationView(generics.ListAPIView):
         
         # Prioritize books from genres the user has liked.
         liked_genres = UserPreference.objects.filter(
-            user__id=user, preference='like'
+            user__id=user, preference__in=['like','dislike']
         ).values_list('book__genre', flat=True)
 
         # Books the user has already interacted with
